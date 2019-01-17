@@ -3,6 +3,7 @@ const TuyaDiscover = require('./lib/discovery');
 const GenericAccessory = require('./lib/generic');
 const { DimmerAccessory, checkDimmerOptionsUpgrade } = require('./lib/dimmer');
 const CurtainAccessory = require('./lib/curtain');
+const ContactSensor = require('./lib/contact-sensor');
 
 class TuyaPlatform {
   constructor(log, config, api) {
@@ -78,6 +79,9 @@ class TuyaPlatform {
         break;
       case 'dimmer':
         deviceAccessory = new DimmerAccessory(this, homebridgeAccessory, device);
+        break;
+      case 'contact-sensor':
+        deviceAccessory = new ContactSensor(this, homebridgeAccessory, device);
         break;
       case 'generic':
       default:
